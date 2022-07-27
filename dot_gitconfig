@@ -1,0 +1,9 @@
+[user]
+	email = "{{ .email }}"
+	name = David Thai
+
+[commit]
+  template = ~/.gitmessage
+
+[push]
+	autoSetupRemote = true

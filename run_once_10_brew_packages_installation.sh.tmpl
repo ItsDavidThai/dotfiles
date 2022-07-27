@@ -1,0 +1,65 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+formulae=(
+	autojump
+	bat
+	curl
+	fzf
+	git
+	git-delta
+	git-gui
+	jq
+	nano
+	nvm
+	tealdeer
+	wget
+	mob
+	ripgrep
+	yarn
+	openjdk@11
+	mas
+)
+casks=(
+	clipy
+	slack
+	google-chrome
+	kap
+	alfred
+	iterm2
+	karabiner-elements
+	postico
+	rectangle
+	notion
+	spotify
+	tableplus
+	visual-studio-code
+)
+
+{{ if .work_device }}
+	formulae+=(
+		docker
+		exa
+		go
+		go-jira
+		mitmproxy
+		rancher
+		TomAnthony/brews/itermocil
+	)
+	casks+=(
+		postman
+		slack
+		stats
+	)
+{{ end }}
+
+brew update
+
+brew install ${formulae[@]}
+brew install --cask ${casks[@]}
+
+brew cleanup
+
+{{ end }}
